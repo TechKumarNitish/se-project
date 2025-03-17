@@ -63,7 +63,7 @@ export default theme => ({
     },
     '&:hover:after': {
       opacity: 1,
-      height: '9px'
+      height: '2px'
     }
   },
   navAccount: { marginLeft: 'auto', marginRight: theme.spacing(3) },

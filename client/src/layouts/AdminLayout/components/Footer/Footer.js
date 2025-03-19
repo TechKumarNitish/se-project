@@ -8,12 +8,12 @@ export default function Footer() {
     <div className={classes.root}>
       <Divider />
       <Typography className={classes.copyright} variant="body1">
-        &copy; SE Project. 2025
+        &copy; Software Engineering Project. 2025
       </Typography>
       <Typography variant="caption">
       Designed with precision and excellence |{' '}
         <Link href="http://georgesimos.com/" target="_blank" rel="noopener">
-          SE Project
+          Software Engineering Project
         </Link>
       </Typography>
     </div>

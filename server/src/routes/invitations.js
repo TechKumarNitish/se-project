@@ -19,7 +19,7 @@ const createMailOptions = (data) => {
                 <br/>
               `;
   return {
-    from: 'geosimos91@gmail.com',
+    from: 'srajank2003@gmail.com',
     to,
     subject: 'Cinema + Invitation',
     html: htmlContent,

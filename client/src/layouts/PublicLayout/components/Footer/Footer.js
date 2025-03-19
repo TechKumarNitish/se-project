@@ -12,7 +12,7 @@ export default function Footer() {
       </Typography>
       <Typography variant="caption">
       Designed with precision and excellence |{' '}
-        <Link href="http://georgesimos.com/" target="_blank" rel="noopener">
+        <Link href="https://github.com/TechKumarNitish/se-project" target="_blank" rel="noopener">
           SE Project
         </Link>
       </Typography>

@@ -66,7 +66,7 @@ The following environment variables are required for the application to function
 | `CLOUD_NAME`   | ✅ Yes   | Cloudinary cloud name             |
 | `API_KEY`      | ✅ Yes   | Cloudinary API key                |
 | `API_SECRET`   | ✅ Yes   | Cloudinary API secret             |
-| `PORT`         | ❌ No   | Default is `8000`                 |
+| `PORT`         | ❌ No   | Default is `8080`                 |
 
 Make sure to set these variables in a `.env` file before running the application.  
 
@@ -99,7 +99,7 @@ docker pull 122cs0070/cineverse-backend
 docker run \
 -e NODE_ENV='production' \
 --env-file .env \
--p 8000:8000 \
+-p 8080:8080 \
 122cs0070/cineverse-backend:latest
 ```
 

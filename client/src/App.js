@@ -11,7 +11,7 @@ import theme from './theme';
 import { Alert } from './components';
 import { pageCursors } from './utils';
 import Routes from './Routes';
-
+import './assets/index.css';
 
 import 'typeface-montserrat';
 import { CssBaseline } from '@material-ui/core';

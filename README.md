@@ -63,9 +63,9 @@ The following environment variables are required for the application to function
 | `MAIL_HOST`    | ✅ Yes   | SMTP mail server host             |
 | `GMAIL_USER`   | ✅ Yes   | Gmail user email for SMTP         |
 | `GMAIL_PASSWORD` | ✅ Yes | Gmail app password for SMTP       |
-| `CLOUD_NAME`   | ✅ Yes   | Cloudinary cloud name             |
-| `API_KEY`      | ✅ Yes   | Cloudinary API key                |
-| `API_SECRET`   | ✅ Yes   | Cloudinary API secret             |
+| `CLOUDINARY_CLOUD_NAME`   | ✅ Yes   | Cloudinary cloud name             |
+| `CLOUDINARY_API_KEY`      | ✅ Yes   | Cloudinary API key                |
+| `CLOUDINARY_API_SECRET`   | ✅ Yes   | Cloudinary API secret             |
 | `PORT`         | ❌ No   | Default is `8080`                 |
 
 Make sure to set these variables in a `.env` file before running the application.  

@@ -53,6 +53,23 @@ $ Create a .env file in your server and client folder
 $ See the .env sample
 create a mongodb database and add your connection string into .env file
 ```
+## Environment Variables
+
+The following environment variables are required for the application to function correctly.  
+
+| Variable        | Required | Description                        |
+|----------------|----------|------------------------------------|
+| `MONGODB_URI`  | ✅ Yes   | MongoDB connection string         |
+| `MAIL_HOST`    | ✅ Yes   | SMTP mail server host             |
+| `GMAIL_USER`   | ✅ Yes   | Gmail user email for SMTP         |
+| `GMAIL_PASSWORD` | ✅ Yes | Gmail app password for SMTP       |
+| `CLOUD_NAME`   | ✅ Yes   | Cloudinary cloud name             |
+| `API_KEY`      | ✅ Yes   | Cloudinary API key                |
+| `API_SECRET`   | ✅ Yes   | Cloudinary API secret             |
+| `PORT`         | ❌ No   | Default is `8000`                 |
+
+Make sure to set these variables in a `.env` file before running the application.  
+
 
 Install the dependencies and devDependencies
 
@@ -68,6 +85,24 @@ Start the server.
 $ cd server 
 $ npm install 
 ```
+OR
+#### Docker Image for Server
+
+A pre-built Docker image for this project is available on Docker Hub:
+
+[https://hub.docker.com/r/122cs0070/cineverse-backend](https://hub.docker.com/r/122cs0070/cineverse-backend)
+
+To pull and run the Docker container:
+
+```bash
+docker pull 122cs0070/cineverse-backend
+docker run \
+-e NODE_ENV='production' \
+--env-file .env \
+-p 8000:8000 \
+122cs0070/cineverse-backend:latest
+```
+
 
 Start the client.
 

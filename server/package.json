@@ -1,5 +1,5 @@
 {
-  "name": "movie-plus-server",
+  "name": "cine-verse-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
-  "author": "George Simos <georgesimos.com>",
+  "author": "Se Project <Se-Project.com>",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",

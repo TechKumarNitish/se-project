@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/georgesimos/cinema-plus.git"
+    "url": "https://github.com/TechKumarNitish/se-project.git"
   },
   "keywords": [],
-  "author": "George Simos <georgesimos.com>",
+  "author": "Se Project <Se-Project.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/georgesimos/cinema-plus/issues"
+    "url": "https://github.com/TechKumarNitish/se-project/issues"
   },
-  "homepage": "https://github.com/georgesimos/cinema-plus#readme",
+  "homepage": "https://github.com/TechKumarNitish/se-project/blob/main/README.md",
   "devDependencies": {
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^18.0.1",

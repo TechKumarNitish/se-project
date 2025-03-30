@@ -1,14 +1,14 @@
 const express = require('express');
 const auth = require('../middlewares/auth');
-const upload = require('../utils/multer');
 const Movie = require('../models/movie');
 const userModeling = require('../utils/userModeling');
+const upload = require('../utils/cloudinary');
 
 const router = new express.Router();
 
 // Create a movie
 router.post('/movies', auth.enhance, async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const movie = new Movie(req.body);
   try {
     await movie.save();
@@ -18,31 +18,30 @@ router.post('/movies', auth.enhance, async (req, res) => {
   }
 });
 
-router.post(
-  '/movies/photo/:id',
-  auth.enhance,
-  upload('movies').single('file'),
-  async (req, res, next) => {
-    const url = `${req.protocol}://${req.get('host')}`;
-    const { file } = req;
-    const movieId = req.params.id;
-    try {
-      if (!file) {
-        const error = new Error('Please upload a file');
-        error.httpStatusCode = 400;
-        return next(error);
-      }
-      const movie = await Movie.findById(movieId);
-      if (!movie) return res.sendStatus(404);
-      movie.image = `${url}/${file.path}`;
-      await movie.save();
-      res.send({ movie, file });
-    } catch (e) {
-      console.log(e);
-      res.sendStatus(400).send(e);
+
+router.post('/movies/photo/:id', auth.enhance, upload.single('file'), async (req, res, next) => {
+  const movieId = req.params.id;
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: { message: 'Please upload a file' } });
     }
+
+    const movie = await Movie.findById(movieId);
+    if (!movie) return res.status(404).json({ error: { message: 'Movie not found' } });
+
+    // Save the Cloudinary URL in the database
+    movie.image = req.file.secure_url;
+    // console.log(req.file);
+
+    await movie.save();
+
+    res.json({ movie, imageUrl: req.file.path });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: { message: 'Error uploading file' } });
   }
-);
+});
+
 
 // Get all movies
 router.get('/movies', async (req, res) => {

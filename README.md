@@ -18,7 +18,7 @@ CineVerse is an online Movie Ticket Booking web app with MERN Stack.
 
 MERN stack is the idea of using Javascript/Node for fullstack web development.
 
-<img src="https://github.com/georgesimos/readme-assets/blob/master/cinema-plus/mern.png" />
+<img src="https://github.com/TechKumarNitish/image/blob/main/mern.png" />
 
 # Features!
 
@@ -128,36 +128,37 @@ CineVerse is currently extended with the following plugins. Instructions on how 
 # Screenshots! 
 
 Movie Page
-<img src="https://github.com/georgesimos/readme-assets/blob/master/cinema-plus/movie.png" />
+<img src="https://github.com/TechKumarNitish/image/blob/main/movie.png" />
 
 <details>
   <summary>More Screenshots</summary>
   Booking Page
-  <img src="https://github.com/georgesimos/readme-assets/blob/master/cinema-plus/booking.png" />
+  <img src="https://github.com/TechKumarNitish/image/blob/main/booking.png" />
 
   Booking Invitations
-  <img src="https://github.com/georgesimos/readme-assets/blob/master/cinema-plus/invitation.png" />
+  <img src="https://github.com/TechKumarNitish/image/blob/main/invitation.png" />
 
   Guest Dashboard Page
-  <img src="https://github.com/georgesimos/readme-assets/blob/master/cinema-plus/guest-dashboard.png" />
+  <img src="https://github.com/TechKumarNitish/image/blob/main/guest-dashboard.png" />
 
   My Account Page
-  <img src="https://github.com/georgesimos/readme-assets/blob/master/cinema-plus/my-account.png" />
+  <img src="https://github.com/TechKumarNitish/image/blob/main/my-account.png" />
 
   Admin Home Page
-  <img src="https://github.com/georgesimos/readme-assets/blob/master/cinema-plus/admin-dashboard.png" />
+  <img src="https://github.com/TechKumarNitish/image/blob/main/admin-dashboard.png" />
 
   Admin Cinema Page
-  <img src="https://github.com/georgesimos/readme-assets/blob/master/cinema-plus/admin-cinemas.png" />
+  <img src="https://github.com/TechKumarNitish/image/blob/main/admin-cinemas.png" />
 
   Admin Movie Page
-  <img src="https://github.com/georgesimos/readme-assets/blob/master/cinema-plus/admin-movies.png" />
+  <img src="https://github.com/TechKumarNitish/image/blob/main/admin-movies.png" />
 
   Admin Reservation Page
-  <img src="https://github.com/georgesimos/readme-assets/blob/master/cinema-plus/reservations.png" />
+  <img src="https://github.com/TechKumarNitish/image/blob/main/reservations.png" />
 
   Admin Reservation Calendar
-  <img src="https://github.com/georgesimos/readme-assets/blob/master/cinema-plus/calendar.png" />
+  <img src="https://github.com/TechKumarNitish/image/blob/main/calendar.png" />
+  https://github.com/TechKumarNitish/image/blob/main/calendar.png
 </details>
 
 

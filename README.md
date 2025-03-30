@@ -158,7 +158,6 @@ Movie Page
 
   Admin Reservation Calendar
   <img src="https://github.com/TechKumarNitish/image/blob/main/calendar.png" />
-  https://github.com/TechKumarNitish/image/blob/main/calendar.png
 </details>
 
 

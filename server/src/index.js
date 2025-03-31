@@ -49,6 +49,10 @@ app.use(showtimeRouter);
 app.use(reservationRouter);
 app.use(invitationsRouter);
 
+app.get("/", (req, res) => {  
+  res.send("Welcome to the API");
+})
+
 // app.get('/api/test', (req, res) => res.send('Hello World'))
 
 // The "catchall" handler: for any request that doesn't

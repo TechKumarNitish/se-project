@@ -10,6 +10,8 @@ import {
 
 import { setAlert } from './alert';
 
+const apiUrl=process.env.REACT_APP_API_URL ||"http://localhost:5000/api";
+
 export const toggleUserDialog = () => ({ type: TOGGLE_USER_DIALOG });
 
 export const selectUser = user => ({
@@ -22,7 +24,7 @@ export const selectAllUsers = () => ({ type: SELECT_ALL_USERS });
 export const getUsers = () => async dispatch => {
   try {
     const token = localStorage.getItem('jwtToken');
-    const url = '/users';
+    const url = `${apiUrl}/users`;
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -41,7 +43,7 @@ export const getUsers = () => async dispatch => {
 export const addUser = user => async dispatch => {
   try {
     const token = localStorage.getItem('jwtToken');
-    const url = '/users/';
+    const url = `${apiUrl}/users/`;
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -71,7 +73,7 @@ export const addUser = user => async dispatch => {
 export const updateUser = (user, id) => async dispatch => {
   try {
     const token = localStorage.getItem('jwtToken');
-    const url = '/users/' + id;
+    const url = `${apiUrl}/users/` + id;
     const response = await fetch(url, {
       method: 'PATCH',
       headers: {
@@ -101,7 +103,7 @@ export const updateUser = (user, id) => async dispatch => {
 export const deleteUser = id => async dispatch => {
   try {
     const token = localStorage.getItem('jwtToken');
-    const url = '/users/' + id;
+    const url = `${apiUrl}/users/` + id;
     const response = await fetch(url, {
       method: 'DELETE',
       headers: {

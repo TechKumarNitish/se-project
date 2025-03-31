@@ -1,11 +1,13 @@
 import { GET_MOVIES, SELECT_MOVIE,GET_SUGGESTIONS } from '../types';
 import { setAlert } from './alert';
 
+const apiUrl=process.env.REACT_APP_API_URL ||"http://localhost:5000";
+
 export const uploadMovieImage = (id, image) => async dispatch => {
   try {
     const data = new FormData();
     data.append('file', image);
-    const url = '/movies/photo/' + id;
+    const url = `${apiUrl}/movies/photo/` + id;
     const token = localStorage.getItem('jwtToken');
     const response = await fetch(url, {
       method: 'POST',
@@ -29,7 +31,7 @@ export const uploadMovieImage = (id, image) => async dispatch => {
 
 export const getMovies = () => async dispatch => {
   try {
-    const url = '/movies';
+    const url = `${apiUrl}/movies`;
     const response = await fetch(url, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' }
@@ -50,7 +52,7 @@ export const onSelectMovie = movie => ({
 
 export const getMovie = id => async dispatch => {
   try {
-    const url = '/movies/' + id;
+    const url = `${apiUrl}/movies/` + id;
     const response = await fetch(url, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' }
@@ -66,7 +68,7 @@ export const getMovie = id => async dispatch => {
 
 export const getMovieSuggestion = id => async dispatch => {
   try {
-    const url = '/movies/usermodeling/' + id;
+    const url = `${apiUrl}/movies/usermodeling/` + id;
     const response = await fetch(url, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' }
@@ -84,7 +86,7 @@ export const addMovie = (image, newMovie) => async dispatch => {
   console.log("movie image: ", image);//....................
   try {
     const token = localStorage.getItem('jwtToken');
-    const url = '/movies';
+    const url = `${apiUrl}/movies`;
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -108,7 +110,7 @@ export const addMovie = (image, newMovie) => async dispatch => {
 export const updateMovie = (movieId, movie, image) => async dispatch => {
   try {
     const token = localStorage.getItem('jwtToken');
-    const url = '/movies/' + movieId;
+    const url = `${apiUrl}/movies/` + movieId;
     const response = await fetch(url, {
       method: 'PUT',
       headers: {
@@ -131,7 +133,7 @@ export const updateMovie = (movieId, movie, image) => async dispatch => {
 export const removeMovie = movieId => async dispatch => {
   try {
     const token = localStorage.getItem('jwtToken');
-    const url = '/movies/' + movieId;
+    const url = `${apiUrl}/movies/` + movieId;
     const response = await fetch(url, {
       method: 'DELETE',
       headers: {

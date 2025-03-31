@@ -1,10 +1,12 @@
 import { GET_RESERVATIONS, GET_RESERVATION_SUGGESTED_SEATS } from '../types';
 import { setAlert } from './alert';
 
+const apiUrl=process.env.REACT_APP_API_URL ||"http://localhost:5000/api";
+
 export const getReservations = () => async dispatch => {
   try {
     const token = localStorage.getItem('jwtToken');
-    const url = '/reservations';
+    const url = `${apiUrl}/reservations`;
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -23,7 +25,7 @@ export const getReservations = () => async dispatch => {
 export const getSuggestedReservationSeats = username => async dispatch => {
   try {
     const token = localStorage.getItem('jwtToken');
-    const url = '/reservations/usermodeling/' + username;
+    const url = `${apiUrl}/reservations/usermodeling/` + username;
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -45,7 +47,7 @@ export const getSuggestedReservationSeats = username => async dispatch => {
 export const addReservation = reservation => async dispatch => {
   try {
     const token = localStorage.getItem('jwtToken');
-    const url = '/reservations';
+    const url = `${apiUrl}/reservations`;
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -75,7 +77,7 @@ export const addReservation = reservation => async dispatch => {
 export const updateReservation = (reservation, id) => async dispatch => {
   try {
     const token = localStorage.getItem('jwtToken');
-    const url = '/reservations/' + id;
+    const url = `${apiUrl}/reservations/` + id;
     const response = await fetch(url, {
       method: 'PATCH',
       headers: {
@@ -100,7 +102,7 @@ export const updateReservation = (reservation, id) => async dispatch => {
 export const removeReservation = id => async dispatch => {
   try {
     const token = localStorage.getItem('jwtToken');
-    const url = '/reservations/' + id;
+    const url = `${apiUrl}/reservations/` + id;
     const response = await fetch(url, {
       method: 'DELETE',
       headers: {

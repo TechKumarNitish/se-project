@@ -19,34 +19,9 @@ router.post('/users', async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
-// router.post('/users/photo/:id', upload('users').single('file'), async (req, res, next) => {
-//   const url = `${req.protocol}://${req.get('host')}`;
-//   const { file } = req;
-//   const userId = req.params.id;
-//   try {
-//     if (!file) {
-//       const error = new Error('Please upload a file');
-//       error.httpStatusCode = 400;
-//       return next(error);
-//     }
-//     const user = await User.findById(userId);
-//     if (!user) return res.sendStatus(404);
-//     user.imageurl = `${url}/${file.path}`;
-//     await user.save();
-//     res.send({ user, file });
-//   } catch (e) {
-//     console.log(e);
-//     res.sendStatus(400).send(e);
-//   }
-// });
-
-router.post('/users/photo/:id', upload('users').single('file'), async (req, res, next) => {
-=======
 router.post('/users/photo/:id', upload.single('file'), async (req, res, next) => {
   
   const { file } = req;
->>>>>>> f68acff (updated)
   const userId = req.params.id;
   try {
     if (!req.file) {
@@ -54,18 +29,8 @@ router.post('/users/photo/:id', upload.single('file'), async (req, res, next) =>
     }
 
     const user = await User.findById(userId);
-<<<<<<< HEAD
-    if (!user) return res.status(404).json({ error: { message: 'User not found' } });
-
-    // Save the Cloudinary URL in the database
-    user.imageurl = req.file.path;
-    // console.log("req- URL");
-    // console.log(req.file.path);
-
-=======
     if (!user) return res.sendStatus(404);
     user.imageurl = req.file.path;
->>>>>>> f68acff (updated)
     await user.save();
 
     res.json({ user, imageUrl: req.file });

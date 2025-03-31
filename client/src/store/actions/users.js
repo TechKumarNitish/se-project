@@ -10,7 +10,7 @@ import {
 
 import { setAlert } from './alert';
 
-const apiUrl=process.env.REACT_APP_API_URL ||"http://localhost:5000/api";
+const apiUrl=process.env.REACT_APP_API_URL ||"http://localhost:8080";
 
 export const toggleUserDialog = () => ({ type: TOGGLE_USER_DIALOG });
 

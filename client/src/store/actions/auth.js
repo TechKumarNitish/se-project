@@ -10,7 +10,7 @@ import {
 import { setAlert } from './alert';
 import { setAuthHeaders, setUser, removeUser, isLoggedIn } from '../../utils';
 
-const apiUrl=process.env.REACT_APP_API_URL ||"http://localhost:5000";
+const apiUrl=process.env.REACT_APP_API_URL ||"http://localhost:8080";
 
 export const uploadImage = (id, image) => async dispatch => {
   try {

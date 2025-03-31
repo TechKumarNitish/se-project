@@ -1,6 +1,6 @@
 const express = require('express');
 const auth = require('../middlewares/auth');
-const upload = require('../utils/multer');
+const upload = require('../utils/cloudinary');
 const Cinema = require('../models/cinema');
 const userModeling = require('../utils/userModeling');
 
@@ -18,25 +18,29 @@ router.post('/cinemas', auth.enhance, async (req, res) => {
 });
 
 router.post('/cinemas/photo/:id', upload('cinemas').single('file'), async (req, res, next) => {
-  const url = `${req.protocol}://${req.get('host')}`;
-  const { file } = req;
   const movieId = req.params.id;
   try {
-    if (!file) {
-      const error = new Error('Please upload a file');
-      error.httpStatusCode = 400;
-      return next(error);
+    if (!req.file) {
+      return res.status(400).json({ error: { message: 'Please upload a file' } });
     }
+
     const cinema = await Cinema.findById(movieId);
-    if (!cinema) return res.sendStatus(404);
-    cinema.image = `${url}/${file.path}`;
+    if (!cinema) return res.status(404).json({ error: { message: 'Cinema not found' } });
+
+    // Save the Cloudinary URL in the database
+    cinema.image = req.file.path;
+    console.log("req- URL");
+    console.log(req.file);
+
     await cinema.save();
-    res.send({ cinema, file });
-  } catch (e) {
-    console.log(e);
-    res.sendStatus(400).send(e);
+
+    res.json({ cinema, imageUrl: req.file});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: { message: 'Error uploading file' } });
   }
 });
+
 
 // Get all cinemas
 router.get('/cinemas', async (req, res) => {

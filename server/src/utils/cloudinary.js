@@ -9,16 +9,19 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-// Configure Multer to use Cloudinary
-const storage = new CloudinaryStorage({
-  cloudinary,
-  params: {
-    folder: 'movies', // Folder name in Cloudinary
-    format: async (req, file) => 'png', // Change format if needed
-    public_id: (req, file) => `movie_${Date.now()}` // Unique filename
-  }
-});
 
-const upload = multer({ storage });
+const getStorage = (folderName) => {
+  return new CloudinaryStorage({
+    cloudinary,
+    params: async (req, file) => ({
+      folder: folderName,  
+      format: 'png', 
+      public_id: `file_${Date.now()}`
+    })
+  });
+};
+
+// Middleware to create a dynamic uploader
+const upload = (folderName) => multer({ storage: getStorage(folderName) });
 
 module.exports = upload;

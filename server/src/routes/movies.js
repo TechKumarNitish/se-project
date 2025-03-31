@@ -19,7 +19,7 @@ router.post('/movies', auth.enhance, async (req, res) => {
 });
 
 
-router.post('/movies/photo/:id', auth.enhance, upload.single('file'), async (req, res, next) => {
+router.post('/movies/photo/:id', auth.enhance, upload('movies').single('file'), async (req, res, next) => {
   const movieId = req.params.id;
   try {
     if (!req.file) {
@@ -30,8 +30,9 @@ router.post('/movies/photo/:id', auth.enhance, upload.single('file'), async (req
     if (!movie) return res.status(404).json({ error: { message: 'Movie not found' } });
 
     // Save the Cloudinary URL in the database
-    movie.image = req.file.secure_url;
-    // console.log(req.file);
+    movie.image = req.file.path;
+    // console.log("req- URL");
+    // console.log(req.file.path);
 
     await movie.save();
 

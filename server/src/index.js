@@ -60,4 +60,11 @@ app.get("/", (req, res) => {
 // app.get('/*', (req, res) => {
 //   res.sendFile(path.join(__dirname + '../../client/build/index.html'));
 // });
+
+app.get('/', (req, res) => {
+  // console.log('CineVerse Backend is up and running...');
+  res.send('CineVerse Backend is up and running....');
+}
+);
+
 app.listen(port, () => console.log(`app is running in PORT: ${port}`));

@@ -19,6 +19,7 @@ router.post('/users', async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 // router.post('/users/photo/:id', upload('users').single('file'), async (req, res, next) => {
 //   const url = `${req.protocol}://${req.get('host')}`;
 //   const { file } = req;
@@ -41,6 +42,11 @@ router.post('/users', async (req, res) => {
 // });
 
 router.post('/users/photo/:id', upload('users').single('file'), async (req, res, next) => {
+=======
+router.post('/users/photo/:id', upload.single('file'), async (req, res, next) => {
+  
+  const { file } = req;
+>>>>>>> f68acff (updated)
   const userId = req.params.id;
   try {
     if (!req.file) {
@@ -48,6 +54,7 @@ router.post('/users/photo/:id', upload('users').single('file'), async (req, res,
     }
 
     const user = await User.findById(userId);
+<<<<<<< HEAD
     if (!user) return res.status(404).json({ error: { message: 'User not found' } });
 
     // Save the Cloudinary URL in the database
@@ -55,6 +62,10 @@ router.post('/users/photo/:id', upload('users').single('file'), async (req, res,
     // console.log("req- URL");
     // console.log(req.file.path);
 
+=======
+    if (!user) return res.sendStatus(404);
+    user.imageurl = req.file.path;
+>>>>>>> f68acff (updated)
     await user.save();
 
     res.json({ user, imageUrl: req.file });
@@ -66,7 +77,7 @@ router.post('/users/photo/:id', upload('users').single('file'), async (req, res,
 
 // Login User
 router.post('/users/login', async (req, res) => {
-  console.log("login.......")
+  // console.log("login.......")
   try {
     const user = await User.findByCredentials(req.body.username, req.body.password);
     const token = await user.generateAuthToken();
@@ -193,7 +204,7 @@ router.get('/users/:id', auth.enhance, async (req, res) => {
 
 // Edit/Update user
 router.patch('/users/me', auth.simple, async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const updates = Object.keys(req.body);
   const allowedUpdates = ['name', 'phone', 'username', 'email', 'password'];
   const isValidOperation = updates.every((update) => allowedUpdates.includes(update));

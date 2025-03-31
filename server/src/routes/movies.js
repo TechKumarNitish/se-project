@@ -31,7 +31,10 @@ router.post('/movies/photo/:id', auth.enhance, upload('movies').single('file'), 
 
     // Save the Cloudinary URL in the database
     movie.image = req.file.path;
+<<<<<<< HEAD
     // console.log("req- URL");
+=======
+>>>>>>> f68acff (updated)
     // console.log(req.file.path);
 
     await movie.save();

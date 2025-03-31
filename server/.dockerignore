@@ -1,5 +1,6 @@
 # Ignore node_modules (container should install fresh dependencies)
 node_modules
+uploads
 
 # Ignore environment variables & secrets
 .env

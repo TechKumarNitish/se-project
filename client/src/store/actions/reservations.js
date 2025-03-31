@@ -1,8 +1,7 @@
 import { GET_RESERVATIONS, GET_RESERVATION_SUGGESTED_SEATS } from '../types';
 import { setAlert } from './alert';
 
-const apiUrl=process.env.REACT_APP_API_URL ||"http://localhost8080";
-
+const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8080';
 export const getReservations = () => async dispatch => {
   try {
     const token = localStorage.getItem('jwtToken');

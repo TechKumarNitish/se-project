@@ -20,21 +20,21 @@ const simple = async (req, res, next) => {
 
 const enhance = async (req, res, next) => {
   try {
-    console.log("header",req.header('Authorization'));
+    // console.log("header",req.header('Authorization'));
     const token = req.header('Authorization').replace('Bearer ', '');
     const decoded = jwt.verify(token, 'mySecret');
-    console.log("decoded",decoded);
+    // console.log("decoded",decoded);
     const user = await User.findOne({
       _id: decoded._id,
       'tokens.token': token,
     });
-    console.log("user",user);
+    // console.log("user",user);
     if (!user || user.role !== 'superadmin') throw new Error();
     req.token = token;
     req.user = user;
     next();
   } catch (e) {
-    console.log("not authorized")
+    // console.log("not authorized")
     res.status(401).send({ error: 'Please authenticate.' });
   }
 };

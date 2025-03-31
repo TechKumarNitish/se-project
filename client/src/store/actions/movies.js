@@ -1,7 +1,7 @@
 import { GET_MOVIES, SELECT_MOVIE,GET_SUGGESTIONS } from '../types';
 import { setAlert } from './alert';
 
-const apiUrl=process.env.REACT_APP_API_URL ||"http://localhost:8080";
+const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8080';
 
 export const uploadMovieImage = (id, image) => async dispatch => {
   try {

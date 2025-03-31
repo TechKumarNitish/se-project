@@ -81,7 +81,7 @@ function CinemaCard(props) {
       <div className={classes.stats}>
         <AttachMoney className={classes.eventIcon} />
         <Typography className={classes.eventText} variant="body2">
-          {cinema.ticketPrice} <span>&euro;</span> per movie
+        <span>₹</span> {cinema.ticketPrice}  per movie
         </Typography>
       </div>
       <div className={classes.stats}>

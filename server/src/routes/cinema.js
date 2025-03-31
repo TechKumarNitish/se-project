@@ -17,7 +17,13 @@ router.post('/cinemas', auth.enhance, async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 router.post('/cinemas/photo/:id', upload('cinemas').single('file'), async (req, res, next) => {
+=======
+router.post('/cinemas/photo/:id', upload.single('file'), async (req, res, next) => {
+  const{file}=req.file
+  console.log(file)
+>>>>>>> f68acff (updated)
   const movieId = req.params.id;
   try {
     if (!req.file) {
@@ -25,6 +31,7 @@ router.post('/cinemas/photo/:id', upload('cinemas').single('file'), async (req, 
     }
 
     const cinema = await Cinema.findById(movieId);
+<<<<<<< HEAD
     if (!cinema) return res.status(404).json({ error: { message: 'Cinema not found' } });
 
     // Save the Cloudinary URL in the database
@@ -32,6 +39,10 @@ router.post('/cinemas/photo/:id', upload('cinemas').single('file'), async (req, 
     console.log("req- URL");
     console.log(req.file);
 
+=======
+    if (!cinema) return res.sendStatus(404);
+    cinema.image = req.file.path;
+>>>>>>> f68acff (updated)
     await cinema.save();
 
     res.json({ cinema, imageUrl: req.file});

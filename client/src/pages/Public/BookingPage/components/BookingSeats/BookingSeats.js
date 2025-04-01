@@ -56,7 +56,7 @@ export default function BookingSeats(props) {
               {seatRows.map((seat, index) => (
                 <Box
                   key={`seat-${index}`}
-                  onClick={() => onSelectSeat(indexRow, index)}
+                  onClick={() => {if(seat!==1)onSelectSeat(indexRow, index)}}
                   className={classes.seat}
                   bgcolor={
                     seat === 1

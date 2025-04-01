@@ -17,7 +17,7 @@ router.post('/cinemas', auth.enhance, async (req, res) => {
   }
 });
 
-router.post('/cinemas/photo/:id', upload.single('file'), async (req, res, next) => {
+router.post('/cinemas/photo/:id', upload().single('file'), async (req, res, next) => { 
   const{file}=req.file
   console.log(file)
   const movieId = req.params.id;

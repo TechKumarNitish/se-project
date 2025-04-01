@@ -1,8 +1,10 @@
 #!/bin/bash
 
+cd ../client && npm run build
+
 # Variables
 BUCKET_NAME="cineverse-frontend"
-BUILD_DIR="../client/build"
+BUILD_DIR="build"
 
 # Remove all files from S3
 aws s3 rm s3://$BUCKET_NAME --recursive

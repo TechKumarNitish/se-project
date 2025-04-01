@@ -31,6 +31,7 @@ export default function BookingCheckout(props) {
     onBookSeats
   } = props;
 
+  
   return (
     <Box marginTop={2} bgcolor="rgb(18, 20, 24)">
       <Grid container>

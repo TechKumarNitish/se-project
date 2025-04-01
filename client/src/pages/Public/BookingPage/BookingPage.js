@@ -34,6 +34,8 @@ import BookingInvitation from './components/BookingInvitation/BookingInvitation'
 
 import jsPDF from 'jspdf';
 
+const apiUrl=process.env.REACT_APP_API_URL || 'http://localhost:8080';
+
 class BookingPage extends Component {
   didSetSuggestion = false;
 
@@ -102,7 +104,7 @@ class BookingPage extends Component {
     setSelectedSeats([row, seat]);
   };
 
-  async checkout() {
+  async checkout(ticketPrice) {
     const {
       movie,
       cinema,
@@ -121,23 +123,76 @@ class BookingPage extends Component {
     if (selectedSeats.length === 0) return;
     if (!isAuth) return toggleLoginPopup();
 
-    const response = await addReservation({
-      date: selectedDate,
-      startAt: selectedTime,
-      seats: this.bookSeats(),
-      ticketPrice: cinema.ticketPrice,
-      total: selectedSeats.length * cinema.ticketPrice,
-      movieId: movie._id,
-      cinemaId: cinema._id,
-      username: user.username,
-      phone: user.phone
-    });
-    if (response.status === 'success') {
-      const { data } = response;
-      setQRCode(data.QRCode);
-      getReservations();
-      showInvitationForm();
+
+    const doReservation = async (ticketPrice)=>{
+      const response=await addReservation({
+        date: selectedDate,
+        startAt: selectedTime,
+        seats: this.bookSeats(),
+        ticketPrice: cinema.ticketPrice,
+        total: selectedSeats.length * cinema.ticketPrice,
+        movieId: movie._id,
+        cinemaId: cinema._id,
+        username: user.username,
+        phone: user.phone
+      });
+      if (response.status === 'success') {
+        const { data } = response;
+        setQRCode(data.QRCode);
+        getReservations();
+        showInvitationForm();
+      }
     }
+
+    const handlePayment = async (ticketPrice) => {
+      // Request to your backend to create an order
+      // const response = await fetch('http://localhost:5000/create-order', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({ amount }),
+      // });
+      
+      // const data = await response.json();
+      console.log(ticketPrice)
+      const data={
+        amount:ticketPrice*selectedSeats.length*100,
+        currency:"INR",
+  
+      }
+      
+      const options = {
+        key: "rzp_test_R3hjtPUvP8UH2J",  // Your Razorpay key id
+        amount: data.amount,  // Amount in paise
+        currency: data.currency,
+        name: 'CineVerse',
+        description: 'Payment for ticket booking...',
+        payment_capture: 1,
+        // order_id: data.id,
+        handler: async function (response) {
+          // alert(`Payment successful: ${response.razorpay_payment_id}`);
+          // You can send this to your backend for verification and to update the order status
+          await doReservation();
+          
+        },
+        prefill: {
+          username: user.username,
+          // email: 'johndoe@example.com',
+          // contact: '9999999999',
+        },
+        notes: {
+          address: 'Some Address',
+        },
+      };
+  
+      const rzp1 = new window.Razorpay(options);
+      rzp1.open();
+    };
+
+    handlePayment(ticketPrice);
+  
+
   }
 
   bookSeats() {
@@ -190,7 +245,17 @@ class BookingPage extends Component {
     const { reservations, cinema, selectedDate, selectedTime } = this.props;
 
     if (!cinema) return [];
+    
     const newSeats = [...cinema.seats];
+
+    newSeats.forEach((row, rowIndex) => {
+      row.forEach((_, seatIndex) => {
+        if(newSeats[rowIndex][seatIndex]===1)
+        newSeats[rowIndex][seatIndex] = 0; // Reset to default state
+      });
+    });
+
+    
 
     const filteredReservations = reservations.filter(
       reservation =>
@@ -198,6 +263,7 @@ class BookingPage extends Component {
           new Date(selectedDate).toLocaleDateString() &&
         reservation.startAt === selectedTime
     );
+    
     if (filteredReservations.length && selectedDate && selectedTime) {
       const reservedSeats = filteredReservations
         .map(reservation => reservation.seats)
@@ -288,7 +354,7 @@ class BookingPage extends Component {
     if (!invitations) return;
     try {
       const token = localStorage.getItem('jwtToken');
-      const url = '/invitations';
+      const url = `${apiUrl}/invitations`;
       const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -413,7 +479,7 @@ class BookingPage extends Component {
                   ticketPrice={cinema.ticketPrice}
                   seatsAvailable={cinema.seatsAvailable}
                   selectedSeats={selectedSeats.length}
-                  onBookSeats={() => this.checkout()}
+                  onBookSeats={() => this.checkout(cinema.ticketPrice)}
                 />
               </>
             )}

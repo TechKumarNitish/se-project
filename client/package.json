@@ -19,6 +19,7 @@
     "classnames": "2.2.6",
     "jspdf": "^1.5.3",
     "moment": "2.24.0",
+    "razorpay": "^2.9.6",
     "react": "16.11.0",
     "react-chartjs-2": "^2.8.0",
     "react-dom": "16.11.0",
@@ -39,7 +40,6 @@
     "clean": "rm -rf node_modules/ && npm cache clean",
     "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
     "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
-
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

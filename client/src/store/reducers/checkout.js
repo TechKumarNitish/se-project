@@ -25,6 +25,7 @@ const initialState = {
 
 const setSelectedSeats = (state, seats) => {
   let newSeats = [];
+  
   const seatExist = state.selectedSeats.find(
     seat => JSON.stringify(seat) === JSON.stringify(seats)
   );
